@@ -1,0 +1,241 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-in-view/node_modules/in-view/dist/in-view.min.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-in-view">npmtest-in-view (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-in-view/node_modules/in-view/dist/in-view.min.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">46.92% <small>(61 / 130)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">20.97% <small>(26 / 124)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">40.68% <small>(24 / 59)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">100% <small>(1 / 1)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../index.html">All files</a> » <a href="index.html">node-npmtest-in-view/node_modules/in-view/dist/</a> » in-view.min.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * in-view 0.6.1 - Get notified when a DOM element enters or exits the viewport.
+ * Copyright (c) 2016 Cam Wiegert &lt;cam@camwiegert.com&gt; - https://camwiegert.github.io/in-view
+ * License: MIT
+ */
+!function(t,e){"object"==typeof exports&amp;&amp;"object"==typeof module?module.exports=e():<span class="branch-1 cbranch-no" title="branch not covered">"function"==typeof define&amp;&amp;define.amd?define([],e):"object"==typeof exports?exports.inView=e():t.inView=e()}</span>(this,function(){return function(t){function e(r){if(n[r])return n[r].exports;var i=n[r]={exports:{},id:r,loaded:!1};return t[r].call(i.exports,i,i.exports,e),i.loaded=!0,i.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){"use strict";function r(t){return t&amp;&amp;t.__esModule?t:<span class="branch-1 cbranch-no" title="branch not covered">{"default":t}}</span>var i=n(2),o=r(i);t.exports=o["default"]},function(t,e){<span class="fstat-no" title="function not covered">function n(t){<span class="cstat-no" title="statement not covered"></span>var e=typeof t;<span class="cstat-no" title="statement not covered">r</span>eturn null!=t&amp;&amp;("object"==e||"function"==e)}</span>t.exports=n},function(t,e,n){"use strict";function r(t){return t&amp;&amp;t.__esModule?t:{"default":t}}Object.defineProperty(e,"__esModule",{value:!0});var i=n(9),o=r(i),u=n(3),f=r(u),s=n(4),c=function(){<span class="missing-if-branch" title="if path not taken">I</span>if("undefined"!=typeof window){<span class="cstat-no" title="statement not covered">var t=100,e=["scroll","resize","load"],n={history:[]},r={offset:{},threshold:0,test:s.inViewport},i=(0,o["default"])(<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>n.history.forEach(<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>n[t].check()}</span>)}</span>,t);<span class="cstat-no" title="statement not covered">e</span>.forEach(<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return addEventListener(t,i)}</span>),window.MutationObserver&amp;&amp;addEventListener("DOMContentLoaded",<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>new MutationObserver(i).observe(document.body,{attributes:!0,childList:!0,subtree:!0})}</span>);<span class="cstat-no" title="statement not covered">v</span>ar u=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>if("string"==typeof t){<span class="cstat-no" title="statement not covered">var e=[].slice.call(document.querySelectorAll(t));<span class="cstat-no" title="statement not covered">r</span>eturn n.history.indexOf(t)&gt;-1?n[t].elements=e:(n[t]=(0,f["default"])(e,r),n.history.push(t)),n[t]}</span>}</span>;<span class="cstat-no" title="statement not covered">r</span>eturn u.offset=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>if(void 0===t)<span class="cstat-no" title="statement not covered">return r.offset;<span class="cstat-no" title="statement not covered">v</span></span>ar e=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return"number"==typeof t}</span>;<span class="cstat-no" title="statement not covered">r</span>eturn["top","right","bottom","left"].forEach(e(t)?<span class="fstat-no" title="function not covered">function(e){<span class="cstat-no" title="statement not covered"></span>return r.offset[e]=t}</span>:<span class="fstat-no" title="function not covered">function(n){<span class="cstat-no" title="statement not covered"></span>return e(t[n])?r.offset[n]=t[n]:null}</span>),r.offset}</span>,u.threshold=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return"number"==typeof t&amp;&amp;t&gt;=0&amp;&amp;t&lt;=1?r.threshold=t:r.threshold}</span>,u.test=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return"function"==typeof t?r.test=t:r.test}</span>,u.is=<span class="fstat-no" title="function not covered">function(t){<span class="cstat-no" title="statement not covered"></span>return r.test(t,r)}</span>,u.offset(0),u}</span>};e["default"]=c()},function(t,e){"use strict";<span class="fstat-no" title="function not covered">function n(t,e){<span class="cstat-no" title="statement not covered"></span>if(!(t instanceof e))<span class="cstat-no" title="statement not covered">throw new TypeError("Cannot call a class as a function")}</span></span>Object.defineProperty(e,"__esModule",{value:!0});var r=function(){function t(t,e){for(var n=0;n&lt;e.length;n++){var r=e[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&amp;&amp;(r.writable=!0),Object.defineProperty(t,r.key,r)}}return function(e,n,r){return n&amp;&amp;t(e.prototype,n),r&amp;&amp;<span class="branch-1 cbranch-no" title="branch not covered">t(e,r),</span>e}}(),i=function(){<span class="fstat-no" title="function not covered">function t(e,r){<span class="cstat-no" title="statement not covered"></span>n(this,t),this.options=r,this.elements=e,this.current=[],this.handlers={enter:[],exit:[]},this.singles={enter:[],exit:[]}}</span>return r(t,[{key:"check",value:<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>var t=this;<span class="cstat-no" title="statement not covered">r</span>eturn this.elements.forEach(<span class="fstat-no" title="function not covered">function(e){<span class="cstat-no" title="statement not covered"></span>var n=t.options.test(e,t.options),r=t.current.indexOf(e),i=r&gt;-1,o=n&amp;&amp;!i,u=!n&amp;&amp;i;<span class="cstat-no" title="statement not covered">o</span>&amp;&amp;(t.current.push(e),t.emit("enter",e)),u&amp;&amp;(t.current.splice(r,1),t.emit("exit",e))}</span>),this}</span>},{key:"on",value:<span class="fstat-no" title="function not covered">function(t,e){<span class="cstat-no" title="statement not covered"></span>return this.handlers[t].push(e),this}</span>},{key:"once",value:<span class="fstat-no" title="function not covered">function(t,e){<span class="cstat-no" title="statement not covered"></span>return this.singles[t].unshift(e),this}</span>},{key:"emit",value:<span class="fstat-no" title="function not covered">function(t,e){<span class="cstat-no" title="statement not covered"></span>for(;this.singles[t].length;)<span class="cstat-no" title="statement not covered">this.singles[t].pop()(e);<span class="cstat-no" title="statement not covered">f</span></span>or(var n=this.handlers[t].length;--n&gt;-1;)<span class="cstat-no" title="statement not covered">this.handlers[t][n](e);<span class="cstat-no" title="statement not covered">r</span></span>eturn this}</span>}]),t}();e["default"]=<span class="fstat-no" title="function not covered">function(t,e){<span class="cstat-no" title="statement not covered"></span>return new i(t,e)}</span>},function(t,e){"use strict";<span class="fstat-no" title="function not covered">function n(t,e){<span class="cstat-no" title="statement not covered"></span>var n=t.getBoundingClientRect(),r=n.top,i=n.right,o=n.bottom,u=n.left,f=n.width,s=n.height,c={t:o,r:window.innerWidth-u,b:window.innerHeight-r,l:i},a={x:e.threshold*f,y:e.threshold*s};<span class="cstat-no" title="statement not covered">r</span>eturn c.t&gt;e.offset.top+a.y&amp;&amp;c.r&gt;e.offset.right+a.x&amp;&amp;c.b&gt;e.offset.bottom+a.y&amp;&amp;c.l&gt;e.offset.left+a.x}</span>Object.defineProperty(e,"__esModule",{value:!0}),e.inViewport=n},function(t,e){(function(e){var n="object"==typeof e&amp;&amp;e&amp;&amp;e.Object===Object&amp;&amp;e;t.exports=n}).call(e,function(){return this}())},function(t,e,n){var r=n(5),i="object"==typeof self&amp;&amp;<span class="branch-1 cbranch-no" title="branch not covered">self&amp;</span>&amp;<span class="branch-2 cbranch-no" title="branch not covered">self.Object===Object&amp;</span>&amp;<span class="branch-3 cbranch-no" title="branch not covered">self,</span>o=r||<span class="branch-1 cbranch-no" title="branch not covered">i|</span>|<span class="branch-2 cbranch-no" title="branch not covered">Function("return this")();</span>t.exports=o},function(t,e,n){<span class="fstat-no" title="function not covered">function r(t,e,n){<span class="fstat-no" title="function not covered"></span>function r(e){<span class="cstat-no" title="statement not covered"></span>var n=x,r=m;<span class="cstat-no" title="statement not covered">r</span>eturn x=m=void 0,E=e,w=t.apply(r,n)}<span class="fstat-no" title="function not covered"></span>function a(t){<span class="cstat-no" title="statement not covered"></span>return E=t,j=setTimeout(h,e),M?r(t):w}<span class="fstat-no" title="function not covered"></span>function l(t){<span class="cstat-no" title="statement not covered"></span>var n=t-O,r=t-E,i=e-n;<span class="cstat-no" title="statement not covered">r</span>eturn _?c(i,g-r):i}<span class="fstat-no" title="function not covered"></span>function d(t){<span class="cstat-no" title="statement not covered"></span>var n=t-O,r=t-E;<span class="cstat-no" title="statement not covered">r</span>eturn void 0===O||n&gt;=e||n&lt;0||_&amp;&amp;r&gt;=g}<span class="fstat-no" title="function not covered"></span>function h(){<span class="cstat-no" title="statement not covered"></span>var t=o();<span class="cstat-no" title="statement not covered">r</span>eturn d(t)?p(t):void(j=setTimeout(h,l(t)))}<span class="fstat-no" title="function not covered"></span>function p(t){<span class="cstat-no" title="statement not covered"></span>return j=void 0,T&amp;&amp;x?r(t):(x=m=void 0,w)}<span class="fstat-no" title="function not covered"></span>function v(){<span class="cstat-no" title="statement not covered"></span>void 0!==j&amp;&amp;clearTimeout(j),E=0,x=O=m=j=void 0}<span class="fstat-no" title="function not covered"></span>function y(){<span class="cstat-no" title="statement not covered"></span>return void 0===j?w:p(o())}<span class="fstat-no" title="function not covered"></span>function b(){<span class="cstat-no" title="statement not covered"></span>var t=o(),n=d(t);<span class="cstat-no" title="statement not covered">i</span>f(x=arguments,m=this,O=t,n){<span class="cstat-no" title="statement not covered">if(void 0===j)<span class="cstat-no" title="statement not covered">return a(O);<span class="cstat-no" title="statement not covered">i</span></span>f(_)<span class="cstat-no" title="statement not covered">return j=setTimeout(h,e),r(O)}<span class="cstat-no" title="statement not covered"></span></span>r</span>eturn void 0===j&amp;&amp;(j=setTimeout(h,e)),w}<span class="cstat-no" title="statement not covered"></span>var x,m,g,w,j,O,E=0,M=!1,_=!1,T=!0;<span class="cstat-no" title="statement not covered">i</span>f("function"!=typeof t)<span class="cstat-no" title="statement not covered">throw new TypeError(f);<span class="cstat-no" title="statement not covered">r</span></span>eturn e=u(e)||0,i(n)&amp;&amp;(M=!!n.leading,_="maxWait"in n,g=_?s(u(n.maxWait)||0,e):g,T="trailing"in n?!!n.trailing:T),b.cancel=v,b.flush=y,b}</span>var i=n(1),o=n(8),u=n(10),f="Expected a function",s=Math.max,c=Math.min;t.exports=r},function(t,e,n){var r=n(6),i=<span class="fstat-no" title="function not covered">function(){<span class="cstat-no" title="statement not covered"></span>return r.Date.now()}</span>;t.exports=i},function(t,e,n){<span class="fstat-no" title="function not covered">function r(t,e,n){<span class="cstat-no" title="statement not covered"></span>var r=!0,f=!0;<span class="cstat-no" title="statement not covered">i</span>f("function"!=typeof t)<span class="cstat-no" title="statement not covered">throw new TypeError(u);<span class="cstat-no" title="statement not covered">r</span></span>eturn o(n)&amp;&amp;(r="leading"in n?!!n.leading:r,f="trailing"in n?!!n.trailing:f),i(t,e,{leading:r,maxWait:e,trailing:f})}</span>var i=n(7),o=n(1),u="Expected a function";t.exports=r},function(t,e){<span class="fstat-no" title="function not covered">function n(t){<span class="cstat-no" title="statement not covered"></span>return t}</span>t.exports=n}])});
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sun Apr 23 2017 14:22:16 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
